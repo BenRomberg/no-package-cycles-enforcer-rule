@@ -1,6 +1,6 @@
 There are package cycles:
 
-Package-cycle found involving fit, fit.decorator.util, fit.testFxtr, fitnesse, fitnesse.authentication, fitnesse.components, fitnesse.html, fitnesse.http, fitnesse.responders, fitnesse.responders.editing, fitnesse.responders.files, fitnesse.responders.refactoring, fitnesse.responders.run, fitnesse.responders.run.formatters, fitnesse.responders.search, fitnesse.responders.templateUtilities, fitnesse.responders.testHistory, fitnesse.responders.versions, fitnesse.runner, fitnesse.slim, fitnesse.slim.converters, fitnesse.slim.instructions, fitnesse.slim.protocol, fitnesse.slim.test, fitnesse.testsystems, fitnesse.testsystems.fit, fitnesse.testsystems.slim, fitnesse.testsystems.slim.results, fitnesse.testsystems.slim.tables, fitnesse.testutil, fitnesse.wiki, fitnesse.wiki.zip, fitnesse.wikitext, fitnesse.wikitext.parser, fitnesse.wikitext.test, util:
+36-edged package-cycle found involving fit, fit.decorator.util, fit.testFxtr, fitnesse, fitnesse.authentication, fitnesse.components, fitnesse.html, fitnesse.http, fitnesse.responders, fitnesse.responders.editing, fitnesse.responders.files, fitnesse.responders.refactoring, fitnesse.responders.run, fitnesse.responders.run.formatters, fitnesse.responders.search, fitnesse.responders.templateUtilities, fitnesse.responders.testHistory, fitnesse.responders.versions, fitnesse.runner, fitnesse.slim, fitnesse.slim.converters, fitnesse.slim.instructions, fitnesse.slim.protocol, fitnesse.slim.test, fitnesse.testsystems, fitnesse.testsystems.fit, fitnesse.testsystems.slim, fitnesse.testsystems.slim.results, fitnesse.testsystems.slim.tables, fitnesse.testutil, fitnesse.wiki, fitnesse.wiki.zip, fitnesse.wikitext, fitnesse.wikitext.parser, fitnesse.wikitext.test, util:
     fit depends on:
         fit.testFxtr (CannotLoadFixtureTest)
         util (Binding, BindingTest, FitProtocol, FitServer, FitServerTest, FixtureName, FixtureTest, RowFixture)
@@ -296,3 +296,285 @@ Package-cycle found involving fit, fit.decorator.util, fit.testFxtr, fitnesse, f
         fitnesse.responders.editing (TemplateUtilTest)
         fitnesse.testutil (TemplateUtilTest)
         fitnesse.wiki (TemplateUtil, TemplateUtilTest)
+
+Nested 2-edged package-cycle found involving fit, fit.testFxtr:
+    fit depends on:
+        fit.testFxtr (CannotLoadFixtureTest)
+    fit.testFxtr depends on:
+        fit (HandleFixtureDoesNotExtendFixtureTest, NoDefaultConstructorFixture)
+
+Nested 2-edged package-cycle found involving fitnesse, fitnesse.authentication:
+    fitnesse depends on:
+        fitnesse.authentication (ComponentFactory, ComponentFactoryTest, FitNesseContext, FitNesseContext$Builder, FitNesseExpediter, FitNesseExpediterTest$StoneWallAuthenticator)
+    fitnesse.authentication depends on:
+        fitnesse (AlwaysSecureOperation, Authenticator, AuthenticatorTest, AuthenticatorTest$DummySecureResponder, InsecureOperation, NegotiateAuthenticator, NegotiateAuthenticator$UnauthenticatedNegotiateResponder, NegotiateAuthenticatorTest, SecureOperation, SecureOperationTest, SecurePageOperation, SecureResponder, UnauthorizedResponder, UnauthorizedResponderTest)
+
+Nested 2-edged package-cycle found involving fitnesse, fitnesse.responders:
+    fitnesse depends on:
+        fitnesse.responders (ComponentFactory, ComponentFactoryTest, ComponentFactoryTest$DummyPlugin, FitNesseContext, FitNesseExpediter)
+    fitnesse.responders depends on:
+        fitnesse (BasicResponder, BasicWikiPageResponder, ChunkingResponder, ChunkingResponderTest, DefaultResponder, ErrorResponder, ErrorResponderTest, ImportAndViewResponder, NotFoundResponder, NotFoundResponderTest, PacketResponder, PacketResponderTest, PageDataWikiPageResponderTest, PageFactory, RawContentResponder, RawContentResponderTest, ResponderFactory, ResponderTestCase, RssResponder, RssResponderTest, SerializedPageResponder, SerializedPageResponderTest, ShutdownResponder, ShutdownResponder$1, ShutdownResponderTest, WikiImportingResponder, WikiPageResponder, WikiPageResponderTest)
+
+Nested 2-edged package-cycle found involving fitnesse, fitnesse.responders.editing:
+    fitnesse depends on:
+        fitnesse.responders.editing (ComponentFactory, ComponentFactoryTest, ComponentFactoryTest$DummyPlugin, ComponentFactoryTest$TestContentFilter)
+    fitnesse.responders.editing depends on:
+        fitnesse (AddChildPageResponder, AddChildPageResponderTest, EditResponder, EditResponderTest, MergeResponder, MergeResponderTest, NewPageResponder, PropertiesResponder, PropertiesResponderTest, SavePropertiesResponder, SavePropertiesResponderTest, SaveResponder, SaveResponderTest, SymbolicLinkResponder, SymbolicLinkResponderTest)
+
+Nested 2-edged package-cycle found involving fitnesse, fitnesse.responders.run:
+    fitnesse depends on:
+        fitnesse.responders.run (FitNesseContext)
+    fitnesse.responders.run depends on:
+        fitnesse (ExecutionReport, ExecutionReportTest, ExposeThreadingIssueInMockResponseTest, FitClientResponder, FitClientResponderTest, MultipleTestsRunner, MultipleTestsRunnerTest, SocketCatchingResponder, SocketCatchingResponderTest, StopTestResponder, StopTestResponderTest, SuiteResponder$1, SuiteResponderTest, SuiteSpecificationRunnerTest, SuiteXmlFormatter, TestExecutionReportTest, TestResponder, TestResponder$1, TestResponder$2, TestResponder$HistoryWriterFactory, TestResponderTest, TestResponderTest$WaitForSemaphoreThenStopProcesses, TestResponderTest$XmlChecker, TestResultFormattingResponder, TestResultFormattingResponderTest)
+
+Nested 2-edged package-cycle found involving fitnesse, fitnesse.testutil:
+    fitnesse depends on:
+        fitnesse.testutil (ComponentFactoryTest, FitNesseExpediterTest, FitNesseServerTest)
+    fitnesse.testutil depends on:
+        fitnesse (FitNesseUtil)
+
+Nested 2-edged package-cycle found involving fitnesse, fitnesse.wiki:
+    fitnesse depends on:
+        fitnesse.wiki (ComponentFactory, ComponentFactoryTest, ComponentFactoryTest$DummyPlugin, FitNesseContext, FitNesseContext$Builder, FitNesseExpediterTest, FitNesseServerTest, WikiPageFactory)
+    fitnesse.wiki depends on:
+        fitnesse (FileSystemPage, InMemoryPage, PageRepositoryTest, WikiImportPropertyTest)
+
+Nested 2-edged package-cycle found involving fitnesse, fitnesse.wikitext.parser:
+    fitnesse depends on:
+        fitnesse.wikitext.parser (ComponentFactory, ComponentFactoryTest, ComponentFactoryTest$DummyPlugin)
+    fitnesse.wikitext.parser depends on:
+        fitnesse (ParsingPage)
+
+Nested 2-edged package-cycle found involving fitnesse.authentication, fitnesse.responders:
+    fitnesse.authentication depends on:
+        fitnesse.responders (NegotiateAuthenticator$UnauthenticatedNegotiateResponder, UnauthorizedResponder)
+    fitnesse.responders depends on:
+        fitnesse.authentication (BasicResponder, ImportAndViewResponder, NameWikiPageResponder, PacketResponder, PageDataWikiPageResponder, RawContentResponder, RssResponder, SerializedPageResponder, ShutdownResponder, ShutdownResponderTest, WikiImportingResponder, WikiImportingResponderAuthenticationTest, WikiPageResponder, WikiPageResponderTest)
+
+Nested 2-edged package-cycle found involving fitnesse.authentication, fitnesse.testutil:
+    fitnesse.authentication depends on:
+        fitnesse.testutil (AuthenticatorTest, NegotiateAuthenticatorTest, SecureOperationTest, UnauthorizedResponderTest)
+    fitnesse.testutil depends on:
+        fitnesse.authentication (FitNesseUtil, SimpleAuthenticator)
+
+Nested 2-edged package-cycle found involving fitnesse.components, fitnesse.testsystems.fit:
+    fitnesse.components depends on:
+        fitnesse.testsystems.fit (SocketDealer, SocketDealerTest, SocketDealerTest$SimpleDoner)
+    fitnesse.testsystems.fit depends on:
+        fitnesse.components (CommandRunningFitClient, FitClientTest, FitSocketReceiver)
+
+Nested 2-edged package-cycle found involving fitnesse.components, fitnesse.wiki:
+    fitnesse.components depends on:
+        fitnesse.wiki (AndPageFinder, AndPageFinderTest, AttributeWikiPageFinder, AttributeWikiPageFinderTest, ClassPathBuilder, ClassPathBuilderTest, CompositePageFinderTestCase, ContentReplacingSearchObserver, ContentReplacingSearchObserverTest, ContentReplacingSearchObserverTest$1, MovedPageReferenceRenamer, OrPageFinder, OrPageFinderTest, PageFinder, PageReferenceRenamer, PageReferenceRenamerTest, PageReferencer, RecentChanges, RecentChangesTest, ReferenceRenamer, RegularExpressionWikiPageFinder, RegularExpressionWikiPageFinderTest, RegularExpressionWikiPageFinderTest$1, SaveRecorder, SaveRecorder$MergeDeterminer, SaveRecorderTest, SuiteSpecificationMatchFinder, SuiteSpecificationMatchFinderTest, TitleWikiPageFinder, TitleWikiPageFinderTest, WhereUsedPageFinder, WhereUsedPageFinderTest, WikiPageFinder)
+    fitnesse.wiki depends on:
+        fitnesse.components (PageCrawler, PageCrawlerImpl, PageCrawlerTest)
+
+Nested 2-edged package-cycle found involving fitnesse.html, fitnesse.responders:
+    fitnesse.html depends on:
+        fitnesse.responders (HtmlUtilTest)
+    fitnesse.responders depends on:
+        fitnesse.html (DefaultResponder, ErrorResponder, NotFoundResponder, WikiPageResponder$WikiPageFooterRenderer, WikiPageResponder$WikiPageRenderer)
+
+Nested 2-edged package-cycle found involving fitnesse.html, util:
+    fitnesse.html depends on:
+        util (HtmlUtilTest)
+    util depends on:
+        fitnesse.html (FormattedExpression)
+
+Nested 2-edged package-cycle found involving fitnesse.http, util:
+    fitnesse.http depends on:
+        util (ChunkedResponseTest, InputStreamResponse, InputStreamResponseTest, Request, RequestBuilder, RequestBuilderTest, RequestTest, ResponseParser, SimpleResponseTest, UploadedFile)
+    util depends on:
+        fitnesse.http (TemplateUtilTest)
+
+Nested 2-edged package-cycle found involving fitnesse.responders, fitnesse.responders.editing:
+    fitnesse.responders depends on:
+        fitnesse.responders.editing (ResponderFactory, ResponderFactoryTest, WikiPageResponder)
+    fitnesse.responders.editing depends on:
+        fitnesse.responders (AddChildPageResponder, EditResponder, MergeResponder, NewPageResponder, PropertiesResponder, SavePropertiesResponder, SaveResponder, SymbolicLinkResponder)
+
+Nested 2-edged package-cycle found involving fitnesse.responders, fitnesse.responders.files:
+    fitnesse.responders depends on:
+        fitnesse.responders.files (ResponderFactory, ResponderFactoryTest)
+    fitnesse.responders.files depends on:
+        fitnesse.responders (DeleteConfirmationResponder, DirectoryResponder, FileResponder, RenameFileConfirmationResponder)
+
+Nested 2-edged package-cycle found involving fitnesse.responders, fitnesse.responders.refactoring:
+    fitnesse.responders depends on:
+        fitnesse.responders.refactoring (ResponderFactory, ResponderFactoryTest)
+    fitnesse.responders.refactoring depends on:
+        fitnesse.responders (DeletePageResponder, DeletePageResponderTest, MovePageResponderTest, PageMovementResponder, RefactorPageResponder, RenamePageResponderTest)
+
+Nested 2-edged package-cycle found involving fitnesse.responders, fitnesse.responders.run:
+    fitnesse.responders depends on:
+        fitnesse.responders.run (ResponderFactory, ResponderFactoryTest, WikiImportTestEventListener, WikiImportTestEventListener$TestEventProcessor, WikiImportTestEventListenerTest$MockSuiteResponder, WikiImportTestEventListenerTest$MockTestResponder)
+    fitnesse.responders.run depends on:
+        fitnesse.responders (ExecutionReportTest, StopTestResponder, TestExecutionReportTest, TestResponder)
+
+Nested 2-edged package-cycle found involving fitnesse.responders, fitnesse.responders.search:
+    fitnesse.responders depends on:
+        fitnesse.responders.search (ResponderFactory, ResponderFactoryTest)
+    fitnesse.responders.search depends on:
+        fitnesse.responders (ResultResponder, SearchFormResponder)
+
+Nested 2-edged package-cycle found involving fitnesse.responders, fitnesse.responders.templateUtilities:
+    fitnesse.responders depends on:
+        fitnesse.responders.templateUtilities (DefaultResponder, ErrorResponder, NotFoundResponder, PageFactory, ShutdownResponder, WikiImportingResponder, WikiPageResponder)
+    fitnesse.responders.templateUtilities depends on:
+        fitnesse.responders (HtmlPageTest, TraverseDirectiveTest)
+
+Nested 2-edged package-cycle found involving fitnesse.responders, fitnesse.responders.testHistory:
+    fitnesse.responders depends on:
+        fitnesse.responders.testHistory (ResponderFactory, ResponderFactoryTest)
+    fitnesse.responders.testHistory depends on:
+        fitnesse.responders (HistoryComparerResponder, HistoryComparerTest, PageHistoryResponder, PageHistoryResponderTest, PurgeHistoryResponder, SuiteOverviewResponder, TestHistoryResponder)
+
+Nested 2-edged package-cycle found involving fitnesse.responders, fitnesse.responders.versions:
+    fitnesse.responders depends on:
+        fitnesse.responders.versions (ResponderFactory, ResponderFactoryTest)
+    fitnesse.responders.versions depends on:
+        fitnesse.responders (RollbackResponder, VersionComparerResponder, VersionResponder, VersionSelectionResponder)
+
+Nested 2-edged package-cycle found involving fitnesse.responders, fitnesse.testsystems:
+    fitnesse.responders depends on:
+        fitnesse.testsystems (WikiPageResponder)
+    fitnesse.testsystems depends on:
+        fitnesse.responders (CompositeExecutionLog, ExecutionLog, TestSystem, TestSystem$Descriptor)
+
+Nested 2-edged package-cycle found involving fitnesse.responders, fitnesse.testsystems.slim:
+    fitnesse.responders depends on:
+        fitnesse.testsystems.slim (PacketResponder)
+    fitnesse.testsystems.slim depends on:
+        fitnesse.responders (SlimTestSystem$SlimDescriptor)
+
+Nested 2-edged package-cycle found involving fitnesse.responders, fitnesse.testutil:
+    fitnesse.responders depends on:
+        fitnesse.testutil (ChunkingResponderTest, ErrorResponderTest, ImportAndViewResponderTest, NameWikiPageResponderTest, NotFoundResponderTest, PacketResponderTest, PageDataWikiPageResponderTest, ResponderTestCase, SerializedPageResponderTest, ShutdownResponderTest, WikiImporterTest, WikiImportingResponderAuthenticationTest, WikiImportingResponderTest, WikiPageResponderTest)
+    fitnesse.testutil depends on:
+        fitnesse.responders (FitNesseUtil)
+
+Nested 2-edged package-cycle found involving fitnesse.responders, fitnesse.wiki:
+    fitnesse.responders depends on:
+        fitnesse.wiki (BasicWikiPageResponder, ChunkingResponder, ChunkingResponderTest, ImportAndViewResponder, ImportAndViewResponderTest, MockWikiImporter, NameWikiPageResponder, NameWikiPageResponderTest, NotFoundResponderTest, PacketResponder, PacketResponderTest, PageDataWikiPageResponder, PageDataWikiPageResponderTest, RawContentResponder, RawContentResponderTest, ResponderFactory, ResponderFactoryTest, ResponderTestCase, RssResponder, RssResponder$RecentChangesPage, RssResponderTest, SerializedPageResponder, SerializedPageResponder$1, SerializedPageResponderTest, WikiImportTestEventListener, WikiImportTestEventListener$SuiteEventProcessor, WikiImportTestEventListener$TestEventProcessor, WikiImportTestEventListenerTest, WikiImporter, WikiImporter$NullWikiImporterClient, WikiImporterClient, WikiImporterTest, WikiImportingResponder, WikiImportingResponderAuthenticationTest, WikiImportingResponderTest, WikiPageResponder, WikiPageResponder$WikiPageFooterRenderer, WikiPageResponder$WikiPageRenderer, WikiPageResponderTest)
+    fitnesse.wiki depends on:
+        fitnesse.responders (WikiImportPropertyTest)
+
+Nested 2-edged package-cycle found involving fitnesse.responders.editing, util:
+    fitnesse.responders.editing depends on:
+        util (AddChildPageResponderTest, EditResponder, EditResponderTest, MergeResponderTest, NewPageResponder, NewPageResponderTest, PropertiesResponderTest, SavePropertiesResponderTest, SaveResponderTest, SymbolicLinkResponder, SymbolicLinkResponderTest)
+    util depends on:
+        fitnesse.responders.editing (TemplateUtilTest)
+
+Nested 2-edged package-cycle found involving fitnesse.responders.run, fitnesse.responders.run.formatters:
+    fitnesse.responders.run depends on:
+        fitnesse.responders.run.formatters (JavaFormatter, SuiteResponder, SuiteResponder$1, SuiteXmlFormatter, TestResponder, TestResponder$1, TestResponder$2, TestResponder$HistoryWriterFactory)
+    fitnesse.responders.run.formatters depends on:
+        fitnesse.responders.run (BaseFormatter, CachingSuiteXmlFormatter, CachingSuiteXmlFormatterTest, CachingSuiteXmlFormatterTest$3, CachingSuiteXmlFormatterTest$4, InteractiveFormatter, PageHistoryFormatter, SuiteExecutionReportFormatter, SuiteExecutionReportFormatterTest, SuiteHistoryFormatterTest, XmlFormatter, XmlFormatterTest, XmlFormatterTest$1)
+
+Nested 2-edged package-cycle found involving fitnesse.responders.run, fitnesse.responders.testHistory:
+    fitnesse.responders.run depends on:
+        fitnesse.responders.testHistory (TestResponder$HistoryWriterFactory)
+    fitnesse.responders.testHistory depends on:
+        fitnesse.responders.run (HistoryComparer, HistoryComparerTest, PageHistoryResponder, PageHistoryResponderTest, SuiteOverviewResponder)
+
+Nested 2-edged package-cycle found involving fitnesse.responders.run, fitnesse.testsystems:
+    fitnesse.responders.run depends on:
+        fitnesse.testsystems (ExecutionReport, ExecutionReportTest, FitClientResponder, JavaFormatter, JavaFormatter$TestResultsSummaryTable, JavaFormatter$TestResultsSummaryTableRow, JavaFormatterTest, MultipleTestsRunner, MultipleTestsRunnerTest, NullListener, PagesByTestSystem, ResultsListener, SuiteExecutionReport, SuiteExecutionReport$PageHistoryReference, SuiteExecutionReportTest, SuiteResponderTest, SuiteXmlFormatter, TestExecutionReport, TestExecutionReport$TestResult, TestExecutionReportTest, TestResponder, TestResponder$1, TestResponder$HistoryWriterFactory, TestResponderTest, TestResultFormattingResponder, TestResultFormattingResponderTest)
+    fitnesse.testsystems depends on:
+        fitnesse.responders.run (ExecutionLogTest, PageListSetUpTearDownSurrounderTest)
+
+Nested 2-edged package-cycle found involving fitnesse.responders.templateUtilities, fitnesse.wiki:
+    fitnesse.responders.templateUtilities depends on:
+        fitnesse.wiki (HtmlPageTest, PageTitle, PageTitleTest, TraverseDirectiveTest, TraverseDirectiveTest$MockTraverser)
+    fitnesse.wiki depends on:
+        fitnesse.responders.templateUtilities (WikiImportProperty, WikiImportPropertyTest)
+
+Nested 2-edged package-cycle found involving fitnesse.slim, fitnesse.slim.converters:
+    fitnesse.slim depends on:
+        fitnesse.slim.converters (ConverterSupport, ConverterTest, MethodExecutionResult, SlimMethodInvocationTestBase, StatementExecutor)
+    fitnesse.slim.converters depends on:
+        fitnesse.slim (BooleanArrayConverter, BooleanConverter, CharConverter, ConverterRegistry, ConverterRegistryTest, ConverterRegistryTest$CustomConverter, DateConverter, DoubleArrayConverter, DoubleConverter, EnumConverter, IntConverter, IntegerArrayConverter, ListConverter, PropertyEditorConverter, StringArrayConverter, StringConverter, VoidConverter)
+
+Nested 2-edged package-cycle found involving fitnesse.slim, fitnesse.slim.instructions:
+    fitnesse.slim depends on:
+        fitnesse.slim.instructions (ListExecutor$Executive, SlimClient, SlimClient$1, SlimClient$ToListExecutor, SlimServiceTestBase, StatementExecutorInterface)
+    fitnesse.slim.instructions depends on:
+        fitnesse.slim (CallAndAssignInstruction, CallAndAssignInstructionTest, CallInstruction, CallInstructionTest, ImportInstruction, Instruction, Instruction$1, InstructionExecutor, InstructionFactory, InstructionResult$Error, InvalidInstruction, MakeInstruction)
+
+Nested 2-edged package-cycle found involving fitnesse.slim, fitnesse.slim.protocol:
+    fitnesse.slim depends on:
+        fitnesse.slim.protocol (SlimClient, SlimServer)
+    fitnesse.slim.protocol depends on:
+        fitnesse.slim (SyntaxError)
+
+Nested 2-edged package-cycle found involving fitnesse.slim, fitnesse.slim.test:
+    fitnesse.slim depends on:
+        fitnesse.slim.test (ConverterTest, SlimInstanceCreationTest, SlimMethodInvocationTest, SlimMethodInvocationTestBase)
+    fitnesse.slim.test depends on:
+        fitnesse.slim (DecisionTableExecuteThrows)
+
+Nested 2-edged package-cycle found involving fitnesse.testsystems, fitnesse.testsystems.fit:
+    fitnesse.testsystems depends on:
+        fitnesse.testsystems.fit (TestSystemGroup)
+    fitnesse.testsystems.fit depends on:
+        fitnesse.testsystems (CommandRunningFitClient, CommandRunningFitClient$CommandRunningStrategy, CommandRunningFitClient$InProcessCommandRunner, CommandRunningFitClient$OutOfProcessCommandRunner, CommandRunningFitClient$OutOfProcessCommandRunner$EarlyTerminationRunnable, CommandRunningFitClient$OutOfProcessCommandRunner$TimeoutRunnable, FitClient, FitClientTest, FitTestSystem)
+
+Nested 2-edged package-cycle found involving fitnesse.testsystems, fitnesse.testsystems.slim:
+    fitnesse.testsystems depends on:
+        fitnesse.testsystems.slim (TestSystemGroup)
+    fitnesse.testsystems.slim depends on:
+        fitnesse.testsystems (HtmlSlimTestSystem, HtmlTable$1, HtmlTable$Cell, HtmlTable$Row, SlimTestContext, SlimTestContextImpl, SlimTestSystem, SlimTestSystem$SlimDescriptor, SlimTestSystemTest, SlimTestSystemTest$DummyListener, TestSystemBaseTest)
+
+Nested 2-edged package-cycle found involving fitnesse.testsystems, fitnesse.testsystems.slim.results:
+    fitnesse.testsystems depends on:
+        fitnesse.testsystems.slim.results (TestSystem, TestSystemListener)
+    fitnesse.testsystems.slim.results depends on:
+        fitnesse.testsystems (ExceptionResult, TestResult)
+
+Nested 2-edged package-cycle found involving fitnesse.testsystems, fitnesse.testsystems.slim.tables:
+    fitnesse.testsystems depends on:
+        fitnesse.testsystems.slim.tables (TestSystem, TestSystemListener)
+    fitnesse.testsystems.slim.tables depends on:
+        fitnesse.testsystems (QueryTable, QueryTableBaseTest, ScenarioAndDecisionTableTest, ScenarioAndScriptTableTest, ScenarioTable$ScenarioTestContext, SlimTable$Comparator, SubsetQueryTable, TableTable, TableTable$TableTableExpectation)
+
+Nested 2-edged package-cycle found involving fitnesse.testsystems.slim, fitnesse.testsystems.slim.tables:
+    fitnesse.testsystems.slim depends on:
+        fitnesse.testsystems.slim.tables (HtmlSlimTestSystem, HtmlTable, SlimTestContext, SlimTestContextImpl, SlimTestSystem, SlimTestSystemTest$DummyListener, Table, Table$CellContentSubstitution)
+    fitnesse.testsystems.slim.tables depends on:
+        fitnesse.testsystems.slim (DecisionTable, DecisionTable$DecisionTableCaller, DecisionTable$FixtureCaller, DecisionTable$ScenarioCaller, DecisionTableTest, ImportTable, LibraryTable, OrderedQueryTable, QueryTable, QueryTable$QueryResults$QueryMatcher$FieldMatcher, QueryTable$QueryTableExpectation, QueryTableBaseTest, ReturnedValueExpectationTest, ScenarioAndDecisionTableTest, ScenarioAndScriptTableTest, ScenarioTable, ScenarioTable$1, ScenarioTable$ScenarioExpectation, ScenarioTable$ScenarioTestContext, ScenarioTableTest, ScriptTable, ScriptTable$ArgumentExpectation, ScriptTable$ArgumentExtractor, ScriptTable$ShowActionExpectation, ScriptTableTest, SlimErrorTable, SlimTable, SlimTable$ReturnedValueExpectation, SlimTable$RowExpectation, SlimTable$SilentReturnExpectation, SlimTableFactory, SlimTableFactoryTest, SlimTableTest$MockTable, SlimTableTestSupport, SubsetQueryTable, TableTable, TableTable$TableTableExpectation, TableTableTest)
+
+Nested 2-edged package-cycle found involving fitnesse.testutil, fitnesse.wiki:
+    fitnesse.testutil depends on:
+        fitnesse.wiki (FitNesseUtil, SimpleCachinePage)
+    fitnesse.wiki depends on:
+        fitnesse.testutil (CachingPageTest, ProxyPageTest, WikiImportPropertyTest)
+
+Nested 2-edged package-cycle found involving fitnesse.testutil, util:
+    fitnesse.testutil depends on:
+        util (FitNesseUtil, SampleFileUtility, SimpleCachinePage)
+    util depends on:
+        fitnesse.testutil (TemplateUtilTest)
+
+Nested 2-edged package-cycle found involving fitnesse.wiki, fitnesse.wiki.zip:
+    fitnesse.wiki depends on:
+        fitnesse.wiki.zip (FileSystemPage, FileSystemPageZipFileVersioningTest)
+    fitnesse.wiki.zip depends on:
+        fitnesse.wiki (ZipFileVersionsController)
+
+Nested 2-edged package-cycle found involving fitnesse.wiki, fitnesse.wikitext.parser:
+    fitnesse.wiki depends on:
+        fitnesse.wikitext.parser (FileSystemPage, PageData, PageData$1, PageRepository, PathParser, ReadOnlyPageData, WikiWordReference)
+    fitnesse.wikitext.parser depends on:
+        fitnesse.wiki (ContentsItemBuilder, LastModified, Parser, WikiSourcePage, WikiWordBuilder)
+
+Nested 2-edged package-cycle found involving fitnesse.wiki, util:
+    fitnesse.wiki depends on:
+        util (BaseWikiPage, BaseWikiPageTest, CachingPage, ExternalSuitePage, ExternalSuitePageTest, ExternalTestPage, ExternalTestPageTest, FileSystemPage, FileSystemPageTest, FileSystemPageZipFileVersioningTest, InMemoryPage, PageData, PageDataTest, PageRepository, PageRepositoryTest, PageXmlizer, PageXmlizerTest, ProxyPage, ProxyPageTest, SymbolicPageTest, VersionInfo, WikiImportPropertyTest, WikiPageDummy, WikiPagePath, WikiPageProperties, WikiPagePropertiesTest, WikiPageProperty, WikiWordReference)
+    util depends on:
+        fitnesse.wiki (TemplateUtil, TemplateUtilTest)
+
+Nested 2-edged package-cycle found involving fitnesse.wikitext, fitnesse.wikitext.parser:
+    fitnesse.wikitext depends on:
+        fitnesse.wikitext.parser (PerformanceTest)
+    fitnesse.wikitext.parser depends on:
+        fitnesse.wikitext (Alias, TextBuilder)

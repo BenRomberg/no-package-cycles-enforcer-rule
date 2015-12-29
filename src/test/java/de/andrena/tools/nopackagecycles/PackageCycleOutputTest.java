@@ -1,8 +1,6 @@
 package de.andrena.tools.nopackagecycles;
 
 import static de.andrena.tools.nopackagecycles.CollectionOutput.joinArray;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +8,7 @@ import java.util.List;
 import jdepend.framework.JavaClass;
 import jdepend.framework.JavaPackage;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -75,7 +74,25 @@ public class PackageCycleOutputTest {
 		package1.dependsUpon(package3);
 		package3.dependsUpon(package1);
 		assertOutput(getPackageCycleOutput(package1, package2, package3) + getPackageOutput(package1)
-				+ getPackageOutput(package2) + getPackageOutput(package3));
+				+ getPackageOutput(package2) + getPackageOutput(package3) + getNestedPackageCycleOutput(package1, package2)
+				+ getPackageOutput(package1) + getPackageOutput(package2) + getNestedPackageCycleOutput(package1, package3)
+				+ getPackageOutput(package1) + getPackageOutput(package3));
+	}
+	
+	@Test
+	public void outputFor_ThreePackagesWithCycle_AndClasses_ShowsOnlyRelevantClasses() throws Exception {
+		String package3Name = "sample.package3";
+		JavaPackage package3 = createPackage(package3Name);
+		package1.dependsUpon(package3);
+		package3.dependsUpon(package1);
+		createClassInPackage(PACKAGE1_CLASS_NAME1, package1).addImportedPackage(package2);
+		createClassInPackage(PACKAGE1_CLASS_NAME2, package1).addImportedPackage(package3);
+		assertOutput(getPackageCycleOutput(package1, package2, package3) + getPackageOutput(package1)
+				+ getDependencyPackageOutput(package2, PACKAGE1_CLASS_NAME1) + getDependencyPackageOutput(package3, PACKAGE1_CLASS_NAME2)
+				+ getPackageOutput(package2) + getPackageOutput(package3) + getNestedPackageCycleOutput(package1, package2)
+				+ getPackageOutputWithClasses(package1, package2, PACKAGE1_CLASS_NAME1) + getPackageOutput(package2)
+				+ getNestedPackageCycleOutput(package1, package3) + getPackageOutputWithClasses(package1, package3, PACKAGE1_CLASS_NAME2)
+				+ getPackageOutput(package3));
 	}
 
 	@Test
@@ -156,37 +173,48 @@ public class PackageCycleOutputTest {
 
 	private String getPackageOutputWithClasses(JavaPackage javaPackage, JavaPackage dependencyPackage,
 			String... classNames) {
-		String joinedClassNames = joinArray(classNames, new StringProvider<String>() {
-			public String provide(String value) {
-				return value;
-			}
-		}, ", ");
 		return getPackageOutput(javaPackage.getName())
-				+ getDependencyPackageOutput(dependencyPackage.getName(), joinedClassNames);
+				+ getDependencyPackageOutput(dependencyPackage, classNames);
 	}
 
 	private String getPackageOutput(JavaPackage javaPackage) {
 		return getPackageOutput(javaPackage.getName());
 	}
 
+	private String joinPackageNames(JavaPackage... packages) {
+		return CollectionOutput.joinArray(packages, new StringProvider<JavaPackage>() {
+			public String provide(JavaPackage value) {
+				return value.getName();
+			}
+		}, ", ");
+	}
+
 	private String getPackageCycleOutput(JavaPackage... packages) {
-		return "\n\nPackage-cycle found involving "
-				+ CollectionOutput.joinArray(packages, new StringProvider<JavaPackage>() {
-					public String provide(JavaPackage value) {
-						return value.getName();
-					}
-				}, ", ") + ":";
+		return "\n\n" + getBasePackageCycleOutput(packages);
+	}
+
+	private String getNestedPackageCycleOutput(JavaPackage... packages) {
+		return "\n\nNested " + getBasePackageCycleOutput(packages);
+	}
+
+	private String getBasePackageCycleOutput(JavaPackage[] packages) {
+		return packages.length + "-edged package-cycle found involving " + joinPackageNames(packages) + ":";
 	}
 
 	private void assertOutput(String output) {
-		assertThat(new PackageCycleOutput(packages).getOutput(), is(output));
+		Assert.assertEquals(output, new PackageCycleOutput(packages).getOutput());
 	}
 
 	private String getPackageOutput(String packageName) {
 		return "\n    " + packageName + " depends on:";
 	}
 
-	private String getDependencyPackageOutput(String dependencyPackageNames, String classNames) {
-		return "\n        " + dependencyPackageNames + " (" + classNames + ")";
+	private String getDependencyPackageOutput(JavaPackage dependencyPackage, String... classNames) {
+		String joinedClassNames = joinArray(classNames, new StringProvider<String>() {
+			public String provide(String value) {
+				return value;
+			}
+		}, ", ");
+		return "\n        " + dependencyPackage.getName() + " (" + joinedClassNames + ")";
 	}
 }

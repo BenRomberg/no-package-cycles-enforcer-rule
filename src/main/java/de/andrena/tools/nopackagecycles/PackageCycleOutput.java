@@ -1,6 +1,7 @@
 package de.andrena.tools.nopackagecycles;
 
 import static de.andrena.tools.nopackagecycles.CollectionOutput.joinCollection;
+import static java.util.Arrays.asList;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -49,14 +50,35 @@ public class PackageCycleOutput {
 
 	private void appendOutputForPackageCycle(List<JavaPackage> cyclicPackages) {
 		packages.removeAll(cyclicPackages);
-		appendHeaderForPackageCycle(cyclicPackages);
+		appendHeaderForPackageCycle(cyclicPackages, false);
 		for (JavaPackage cyclicPackage : cyclicPackages) {
 			appendOutputForPackage(cyclicPackage, cyclicPackages);
 		}
+		if (cyclicPackages.size() > 2) {
+			appendOutputFor2ndDegreeCycles(cyclicPackages);
+		}
 	}
 
-	private void appendHeaderForPackageCycle(List<JavaPackage> cyclicPackages) {
-		output.append("\n\n").append("Package-cycle found involving ");
+	private void appendOutputFor2ndDegreeCycles(List<JavaPackage> cyclicPackages) {
+		for (int i = 0; i < cyclicPackages.size(); i++) {
+			JavaPackage cyclicPackage = cyclicPackages.get(i);
+			for (int j = i + 1; j < cyclicPackages.size(); j++) {
+				JavaPackage otherPackage = cyclicPackages.get(j);
+				if (cyclicPackage.getAfferents().contains(otherPackage) && cyclicPackage.getEfferents().contains(otherPackage)) {
+					appendHeaderForPackageCycle(asList(cyclicPackage, otherPackage), true);
+					appendOutputForPackage(cyclicPackage, asList(otherPackage));
+					appendOutputForPackage(otherPackage, asList(cyclicPackage));
+				}
+			}
+		}
+	}
+
+	private void appendHeaderForPackageCycle(List<JavaPackage> cyclicPackages, boolean nested) {
+		output.append("\n\n");
+		if (nested) {
+			output.append("Nested ");
+		}
+		output.append(cyclicPackages.size()).append("-edged package-cycle found involving ");
 		output.append(joinCollection(cyclicPackages, new StringProvider<JavaPackage>() {
 			public String provide(JavaPackage javaPackage) {
 				return javaPackage.getName();
@@ -78,13 +100,12 @@ public class PackageCycleOutput {
 		}
 		List<JavaClass> dependentClasses = getOrderedDependentClasses(javaPackage, cyclicPackage);
 		if (!dependentClasses.isEmpty()) {
-			appendOutputForDependentCyclicPackage(javaPackage, cyclicPackage, dependentClasses);
+			appendOutputForDependentCyclicPackage(cyclicPackage, dependentClasses);
 		}
 	}
 
 	private List<JavaClass> getOrderedDependentClasses(JavaPackage javaPackage, JavaPackage cyclicPackage) {
 		List<JavaClass> dependentClasses = new ArrayList<JavaClass>();
-		@SuppressWarnings("unchecked")
 		Collection<JavaClass> allClasses = javaPackage.getClasses();
 		for (JavaClass javaClass : allClasses) {
 			if (javaClass.getImportedPackages().contains(cyclicPackage)) {
@@ -95,15 +116,13 @@ public class PackageCycleOutput {
 		return dependentClasses;
 	}
 
-	private void appendOutputForDependentCyclicPackage(JavaPackage javaPackage, JavaPackage cyclicPackage,
-			List<JavaClass> dependentClasses) {
+	private void appendOutputForDependentCyclicPackage(JavaPackage cyclicPackage, List<JavaClass> dependentClasses) {
 		output.append("\n        ").append(cyclicPackage.getName()).append(" (");
-		appendOutputForCyclicPackageClasses(javaPackage, cyclicPackage, dependentClasses);
+		appendOutputForCyclicPackageClasses(dependentClasses);
 		output.append(")");
 	}
 
-	private void appendOutputForCyclicPackageClasses(JavaPackage javaPackage, final JavaPackage cyclicPackage,
-			List<JavaClass> dependentClasses) {
+	private void appendOutputForCyclicPackageClasses(List<JavaClass> dependentClasses) {
 		joinCollection(dependentClasses, output, new Appender<JavaClass>() {
 			public void append(JavaClass packageClass) {
 				output.append(packageClass.getName().substring(packageClass.getPackageName().length() + 1));

@@ -1,6 +1,6 @@
 There are package cycles:
 
-Package-cycle found involving junit.extensions, junit.framework, junit.runner, org.junit, org.junit.experimental.theories, org.junit.experimental.theories.internal, org.junit.internal, org.junit.internal.builders, org.junit.internal.matchers, org.junit.internal.requests, org.junit.internal.runners, org.junit.internal.runners.model, org.junit.internal.runners.rules, org.junit.internal.runners.statements, org.junit.matchers, org.junit.rules, org.junit.runner, org.junit.runner.manipulation, org.junit.runner.notification, org.junit.runners, org.junit.runners.model:
+21-edged package-cycle found involving junit.extensions, junit.framework, junit.runner, org.junit, org.junit.experimental.theories, org.junit.experimental.theories.internal, org.junit.internal, org.junit.internal.builders, org.junit.internal.matchers, org.junit.internal.requests, org.junit.internal.runners, org.junit.internal.runners.model, org.junit.internal.runners.rules, org.junit.internal.runners.statements, org.junit.matchers, org.junit.rules, org.junit.runner, org.junit.runner.manipulation, org.junit.runner.notification, org.junit.runners, org.junit.runners.model:
     junit.extensions depends on:
         junit.framework (ActiveTestSuite, ActiveTestSuite$1, RepeatedTest, TestDecorator, TestSetup, TestSetup$1)
     junit.framework depends on:
@@ -109,4 +109,106 @@ Package-cycle found involving junit.extensions, junit.framework, junit.runner, o
         org.junit.internal (TestClass)
         org.junit.internal.runners (RunnerBuilder)
         org.junit.internal.runners.model (FrameworkMethod$1, MultipleFailureException)
+        org.junit.runner (RunnerBuilder)
+
+Nested 2-edged package-cycle found involving junit.framework, org.junit.runner:
+    junit.framework depends on:
+        org.junit.runner (JUnit4TestAdapter, JUnit4TestAdapterCache, JUnit4TestAdapterCache$1, JUnit4TestCaseFacade)
+    org.junit.runner depends on:
+        junit.framework (JUnitCore)
+
+Nested 2-edged package-cycle found involving org.junit, org.junit.internal:
+    org.junit depends on:
+        org.junit.internal (Assert, Assume)
+    org.junit.internal depends on:
+        org.junit (ComparisonCriteria, ExactComparisonCriteria, InexactComparisonCriteria, MethodSorter)
+
+Nested 2-edged package-cycle found involving org.junit, org.junit.runners:
+    org.junit depends on:
+        org.junit.runners (FixMethodOrder)
+    org.junit.runners depends on:
+        org.junit (BlockJUnit4ClassRunner, ParentRunner)
+
+Nested 2-edged package-cycle found involving org.junit.experimental.theories, org.junit.experimental.theories.internal:
+    org.junit.experimental.theories depends on:
+        org.junit.experimental.theories.internal (FromDataPoints, Theories$TheoryAnchor, Theories$TheoryAnchor$1, Theories$TheoryAnchor$1$1, Theories$TheoryAnchor$2)
+    org.junit.experimental.theories.internal depends on:
+        org.junit.experimental.theories (AllMembersSupplier, AllMembersSupplier$MethodParameterValue, Assignments, BooleanSupplier, EnumSupplier, SpecificDataPointsSupplier)
+
+Nested 2-edged package-cycle found involving org.junit.experimental.theories, org.junit.runners.model:
+    org.junit.experimental.theories depends on:
+        org.junit.runners.model (Theories, Theories$TheoryAnchor, Theories$TheoryAnchor$1, Theories$TheoryAnchor$1$1, Theories$TheoryAnchor$2)
+    org.junit.runners.model depends on:
+        org.junit.experimental.theories (FrameworkMethod)
+
+Nested 2-edged package-cycle found involving org.junit.internal, org.junit.runner:
+    org.junit.internal depends on:
+        org.junit.runner (TextListener)
+    org.junit.runner depends on:
+        org.junit.internal (JUnitCore)
+
+Nested 2-edged package-cycle found involving org.junit.internal, org.junit.runners:
+    org.junit.internal depends on:
+        org.junit.runners (MethodSorter)
+    org.junit.runners depends on:
+        org.junit.internal (MethodSorters, ParentRunner)
+
+Nested 2-edged package-cycle found involving org.junit.internal.builders, org.junit.runner:
+    org.junit.internal.builders depends on:
+        org.junit.runner (AllDefaultPossibilitiesBuilder, AnnotatedBuilder, IgnoredBuilder, IgnoredClassRunner, JUnit3Builder, JUnit4Builder, NullBuilder, SuiteMethodBuilder)
+    org.junit.runner depends on:
+        org.junit.internal.builders (Request)
+
+Nested 2-edged package-cycle found involving org.junit.internal.builders, org.junit.runners:
+    org.junit.internal.builders depends on:
+        org.junit.runners (JUnit4Builder)
+    org.junit.runners depends on:
+        org.junit.internal.builders (Suite)
+
+Nested 2-edged package-cycle found involving org.junit.internal.requests, org.junit.runner:
+    org.junit.internal.requests depends on:
+        org.junit.runner (ClassRequest, FilterRequest, SortingRequest)
+    org.junit.runner depends on:
+        org.junit.internal.requests (Request)
+
+Nested 2-edged package-cycle found involving org.junit.internal.runners, org.junit.runner:
+    org.junit.internal.runners depends on:
+        org.junit.runner (ClassRoadie, ErrorReportingRunner, JUnit38ClassRunner, JUnit38ClassRunner$OldTestClassAdaptingListener, JUnit4ClassRunner, MethodRoadie)
+    org.junit.runner depends on:
+        org.junit.internal.runners (JUnitCore, Request)
+
+Nested 2-edged package-cycle found involving org.junit.internal.runners, org.junit.runners.model:
+    org.junit.internal.runners depends on:
+        org.junit.runners.model (ErrorReportingRunner)
+    org.junit.runners.model depends on:
+        org.junit.internal.runners (RunnerBuilder)
+
+Nested 2-edged package-cycle found involving org.junit.internal.runners.model, org.junit.runners.model:
+    org.junit.internal.runners.model depends on:
+        org.junit.runners.model (EachTestNotifier, MultipleFailureException)
+    org.junit.runners.model depends on:
+        org.junit.internal.runners.model (FrameworkMethod$1, MultipleFailureException)
+
+Nested 2-edged package-cycle found involving org.junit.runner, org.junit.runner.manipulation:
+    org.junit.runner depends on:
+        org.junit.runner.manipulation (Request)
+    org.junit.runner.manipulation depends on:
+        org.junit.runner (Filter, Filter$1, Filter$2, Filter$3, Sorter, Sorter$1)
+
+Nested 2-edged package-cycle found involving org.junit.runner, org.junit.runner.notification:
+    org.junit.runner depends on:
+        org.junit.runner.notification (JUnitCore, Result, Result$Listener, Runner)
+    org.junit.runner.notification depends on:
+        org.junit.runner (Failure, RunListener, RunNotifier, RunNotifier$1, RunNotifier$2, RunNotifier$3, RunNotifier$6, RunNotifier$7, RunNotifier$SafeNotifier, SynchronizedRunListener)
+
+Nested 2-edged package-cycle found involving org.junit.runner, org.junit.runners:
+    org.junit.runner depends on:
+        org.junit.runners (Computer)
+    org.junit.runners depends on:
+        org.junit.runner (BlockJUnit4ClassRunner, Parameterized, ParentRunner, Suite)
+
+Nested 2-edged package-cycle found involving org.junit.runner, org.junit.runners.model:
+    org.junit.runner depends on:
+        org.junit.runners.model (Computer, Computer$1, Request)
+    org.junit.runners.model depends on:
         org.junit.runner (RunnerBuilder)

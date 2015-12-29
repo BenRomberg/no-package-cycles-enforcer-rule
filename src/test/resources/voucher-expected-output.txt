@@ -1,6 +1,6 @@
 There are package cycles:
 
-Package-cycle found involving com.flaregames.flapi.voucher.api.web, com.flaregames.flapi.voucher.api.web.commands:
+2-edged package-cycle found involving com.flaregames.flapi.voucher.api.web, com.flaregames.flapi.voucher.api.web.commands:
     com.flaregames.flapi.voucher.api.web depends on:
         com.flaregames.flapi.voucher.api.web.commands (VoucherApiApplication)
     com.flaregames.flapi.voucher.api.web.commands depends on:
