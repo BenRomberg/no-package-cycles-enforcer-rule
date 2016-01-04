@@ -10,7 +10,7 @@ Usage: Add the following plugin to your POM:
 		<dependency>
 			<groupId>com.benromberg.nopackagecycles</groupId>
 			<artifactId>no-package-cycles-enforcer-rule</artifactId>
-			<version>1.0.6</version>
+			<version>1.0.7</version>
 		</dependency>
 	</dependencies>
 	<executions>
